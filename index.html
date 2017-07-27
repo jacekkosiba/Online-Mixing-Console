@@ -12,35 +12,56 @@
 
 <body>
 
-  <!-- mixer -->
-  <div class='mixer'>
-    <!-- faders prepend here -->
 
-      <div class="masterStrip strip">
-        <!-- master fader -->
+
+      <!-- <div class="strip">
+        <div class="buttonBox">
+          <button class="solo">S</button>
+          <button class="mute">M</button>
+        </div>
         <div class="trackbox">
           <div class="track">
-            <div class="master"></div>
+            <div data-id='+i+' class="fader'+i+' fader">
+            </div>
           </div>
         </div>
-        <p class="label">MASTER</p>
+        <p class="label">TEST</p>
+      </div> -->
+
+
+
+  <div class='container'>
+      <!-- mixer -->
+      <div class='mixer'>
+        <!-- faders prepend here -->
+
+          <div class="masterStrip strip">
+            <!-- master fader -->
+            <div class="trackbox">
+              <div class="track">
+                <div class="master"></div>
+              </div>
+            </div>
+            <p class="label">MASTER</p>
+          </div>
+
       </div>
 
-  </div>
 
 
+    <!-- Transport Controls -->
+      <div class='transport'>
+        <div class='transportBox'>
+          <button id='rwrw'>&lt;&lt;</button>
+          <button id='rw'>&lt;</button>
+          <button id='play'>PLAY</button>
+          <button id='pause'>PAUSE</button>
+          <button id='stop'>STOP</button>
+          <button id='ff'>&gt;</button>
+          <button id='ffff'>&gt;&gt;</button>
+        </div>
+      </div>
 
-<!-- Transport Controls -->
-  <div class='transport'>
-    <div class='transportBox'>
-      <button id='rwrw'>&lt;&lt;</button>
-      <button id='rw'>&lt;</button>
-      <button id='play'>PLAY</button>
-      <button id='pause'>PAUSE</button>
-      <button id='stop'>STOP</button>
-      <button id='ff'>&gt;</button>
-      <button id='ffff'>&gt;&gt;</button>
-    </div>
   </div>
 
   <!-- loading box -->

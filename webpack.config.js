@@ -5,4 +5,5 @@ module.exports = {
   },
   watch: true,
   devtool: 'inline-source-map',
+  devtool: 'inline-source-map',
 }

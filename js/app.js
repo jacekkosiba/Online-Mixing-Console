@@ -30,6 +30,9 @@ $(function(){ //DOMContentLoaded
       let newStrip = $('<div class="strip"><div class="buttonBox"><button class="solo">S</button><button class="mute">M</button></div><div class="trackbox"><div class="track"><div data-id='+i+' class="fader'+i+' fader"></div></div></div><p class="label">'+tracksNames[i]+'</p></div>');
       $('.masterStrip').before(newStrip);
 
+      track.volume = 0.6999;
+
+
   }); // end of forEach
 
 
@@ -51,25 +54,33 @@ $(function(){ //DOMContentLoaded
 
         e.preventDefault();
 
-        if( e.buttons === 1 ) {
-          $(this).css('top', (70 + (e.clientY - 115)));
-          if( parseInt($(this).css('top')) >= 315 ) {
-            $(this).css('top', '315px');
-          } else if( parseInt($(this).css('top')) < -35 ) {
-            $(this).css('top', '-35px');
-          };
+        const $mute = $(this).parent().parent().prev().find('.mute');
+
+        if ( $mute.hasClass('muted') ) {
+        } else {
+          if( e.buttons === 1 ) {
+            $(this).css('top', (70 + (e.clientY - 115)));
+            if( parseInt($(this).css('top')) >= 315 ) {
+              $(this).css('top', '315px');
+            } else if( parseInt($(this).css('top')) < -35 ) {
+              $(this).css('top', '-35px');
+            };
+         };
+         setVolume($(this).data('id'));
        };
 
-
-       setVolume($(this).data('id'));
     });
 
 
     // double click on fader
 
     $fader.on('dblclick', function() {
-        $(this).css('top', '70px');
-        setVolume($(this).data('id'));
+        if ( $mute.hasClass('muted') ) {
+        } else {
+          $(this).css('top', '70px');
+          setVolume($(this).data('id'));
+        };
+
     });
 
 
@@ -78,48 +89,54 @@ $(function(){ //DOMContentLoaded
   // solo & mute
 
 
-    const $mute = $('.mute');
-    const $solo = $('.solo');
-
     // mute
 
-    $mute.on('click', function() {
 
-        const id = $(this).parent().parent().find('.fader').data('id');
+      const $mute = $('.mute');
 
-        if( !$(this).hasClass('muted') ) {
-          tracksGroup.sounds[id].volume = 0;
-          $(this).addClass('muted');
-        } else {
-          setVolume(id);
-          $(this).removeClass('muted');
-        };
+      $mute.on('click', function() {
 
-    });
+          const id = $(this).parent().parent().find('.fader').data('id');
+
+          if( !$(this).hasClass('muted') ) {
+            tracksGroup.sounds[id].volume = 0;
+            $(this).addClass('muted');
+          } else {
+            setVolume(id);
+            $(this).removeClass('muted');
+          };
+      });
+
+
 
     // solo
 
-    $solo.on('click', function() {
 
-        const id = $(this).parent().parent().find('.fader').data('id');
 
-        if( !$(this).hasClass('soloed') ) {
-          tracksGroup.sounds.forEach( (t,i) => {
-            if( i !== id ) {
-              t.volume = 0;
-            };
-          });
-          $(this).addClass('soloed');
-        } else {
-          tracksGroup.sounds.forEach( (t,i) => {
-            if( i !== id ) {
-              setVolume(i);
-            };
-          });
-          $(this).removeClass('soloed');
-        };
+      const $solo = $('.solo');
 
-    });
+      $solo.on('click', function() {
+
+          const id = $(this).parent().parent().find('.fader').data('id');
+
+          if( !$(this).hasClass('soloed') ) {
+            tracksGroup.sounds.forEach( (t,i) => {
+              if( i !== id ) {
+                t.volume = 0;
+              };
+            });
+            $(this).addClass('soloed');
+          } else {
+            tracksGroup.sounds.forEach( (t,i) => {
+              if( i !== id ) {
+                setVolume(i);
+              };
+            });
+            $(this).removeClass('soloed');
+          };
+
+      });
+
 
 
 
@@ -137,6 +154,7 @@ $(function(){ //DOMContentLoaded
   const $rwrwBtn = $('#rwrw');
   const $ffffBtn = $('#ffff');
   const $load = $('#load');
+  const $container = $('.container');
 
 
 
@@ -222,11 +240,15 @@ $(function(){ //DOMContentLoaded
 
         // Loading box
 
+        $container.removeClass('overlay');
+        $load.removeClass('loading');
         $load.text('')
         clearInterval(loadingInterval);
 
       } else {
 
+        $container.addClass('overlay');
+        $load.addClass('loading');
         $load.text('Loading...');
 
       };
@@ -240,6 +262,13 @@ $(function(){ //DOMContentLoaded
 
 
   const $masterFader = $('.master');
+
+
+  function setMasterVolumeStart() {
+      trackGroup.volume = 0.6999;
+  };
+
+  setMasterVolume();
 
 
   function setMasterVolume() {
