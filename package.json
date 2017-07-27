@@ -1,0 +1,17 @@
+{
+  "name": "onlinemixer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "pizzicato": "^0.6.1"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^2.6.1"
+  }
+}

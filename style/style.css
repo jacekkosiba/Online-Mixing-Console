@@ -1,0 +1,136 @@
+/* general */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  font-family: 'Quicksand', sans-serif;
+}
+
+
+/* background */
+
+body {
+  background: #232526;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+
+/* mixer */
+
+.mixer {
+  display: flex;
+  flex-direction: row;
+}
+
+/* channel strips */
+
+.strip {
+  background: lightgrey;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 5px;
+}
+
+.masterStrip {
+  background: darkred;
+}
+
+.trackbox {
+  height: 420px;
+  width: 70px;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.track {
+  height: 350px;
+  width: 3px;
+  background: black;
+
+}
+
+.master {
+  height: 70px;
+  width: 35px;
+  background: red;
+  position: relative;
+  right: 16px;
+  top: 70px;
+}
+
+.fader {
+  height: 70px;
+  width: 35px;
+  background: grey;
+  position: relative;
+  right: 16px;
+  top: 70px;
+}
+
+/* labels */
+
+.label {
+  margin: 15px 0 15px 0;
+}
+
+.masterStrip .label {
+  color: white;
+}
+
+/* transport controls */
+
+.transport {
+  background: lightgrey;
+  width: 400px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.transportBox {
+  border: 1px solid black;
+  height: 80px;
+  width: 380px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.transport button {
+  width: 50px;
+  height: 50px;
+}
+
+/* solo/mute */
+
+.buttonBox {
+  margin: 15px 0 15px 0;
+}
+
+.buttonBox button {
+  width: 25px;
+  height: 25px;
+}
+
+.muted {
+  background: red;
+}
+
+.soloed {
+  background: yellow;
+}

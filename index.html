@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en-EN">
+<head>
+    <title>Online Mixing Console</title>
+    <script src="http://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <script src="./node_modules/pizzicato/distr/Pizzicato.min.js"></script>
+    <script src="./js/out.js"></script>
+    <link rel="stylesheet" type="text/css" href="./style/reset.css" />
+    <link rel="stylesheet" type="text/css" href="./style/style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700&amp;subset=latin-ext" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- mixer -->
+  <div class='mixer'>
+    <!-- faders prepend here -->
+
+      <div class="masterStrip strip">
+        <!-- master fader -->
+        <div class="trackbox">
+          <div class="track">
+            <div class="master"></div>
+          </div>
+        </div>
+        <p class="label">MASTER</p>
+      </div>
+
+  </div>
+
+
+
+<!-- Transport Controls -->
+  <div class='transport'>
+    <div class='transportBox'>
+      <button id='rwrw'>&lt;&lt;</button>
+      <button id='rw'>&lt;</button>
+      <button id='play'>PLAY</button>
+      <button id='pause'>PAUSE</button>
+      <button id='stop'>STOP</button>
+      <button id='ff'>&gt;</button>
+      <button id='ffff'>&gt;&gt;</button>
+    </div>
+  </div>
+
+  <!-- loading box -->
+  <div id='load'></div>
+
+
+</body>
+</html>
