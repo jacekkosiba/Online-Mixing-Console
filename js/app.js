@@ -45,8 +45,8 @@ $(function(){ //DOMContentLoaded
     const $fader = $('.fader');
 
 
-    function setVolume(index) {
-        tracksGroup.sounds[index].volume = ( parseInt($fader.css('top')) - 315 ) / -350;
+    function setVolume(index, thisFader) {
+        tracksGroup.sounds[index].volume = ( parseInt(thisFader.css('top')) - 315 ) / -350;
     };
 
 
@@ -57,16 +57,17 @@ $(function(){ //DOMContentLoaded
         const $mute = $(this).parent().parent().prev().find('.mute');
 
         if ( $mute.hasClass('muted') ) {
+          console.log('track is muted');
         } else {
           if( e.buttons === 1 ) {
-            $(this).css('top', (70 + (e.clientY - 115)));
+            $(this).css('top', e.pageY - 130);
             if( parseInt($(this).css('top')) >= 315 ) {
               $(this).css('top', '315px');
             } else if( parseInt($(this).css('top')) < -35 ) {
               $(this).css('top', '-35px');
             };
          };
-         setVolume($(this).data('id'));
+         setVolume( $(this).data('id'), $(this) );
        };
 
     });
@@ -78,7 +79,7 @@ $(function(){ //DOMContentLoaded
         if ( $mute.hasClass('muted') ) {
         } else {
           $(this).css('top', '70px');
-          setVolume($(this).data('id'));
+          setVolume( $(this).data('id'), $(this) );
         };
 
     });
@@ -97,12 +98,13 @@ $(function(){ //DOMContentLoaded
       $mute.on('click', function() {
 
           const id = $(this).parent().parent().find('.fader').data('id');
+          const thisFader = $(this).parent().parent().find('.fader');
 
           if( !$(this).hasClass('muted') ) {
             tracksGroup.sounds[id].volume = 0;
             $(this).addClass('muted');
           } else {
-            setVolume(id);
+            setVolume( id, thisFader );
             $(this).removeClass('muted');
           };
       });
@@ -129,7 +131,7 @@ $(function(){ //DOMContentLoaded
           } else {
             tracksGroup.sounds.forEach( (t,i) => {
               if( i !== id ) {
-                setVolume(i);
+                setVolume(i, $(this) );
               };
             });
             $(this).removeClass('soloed');
@@ -281,7 +283,7 @@ $(function(){ //DOMContentLoaded
       e.preventDefault();
 
       if( e.buttons === 1 ) {
-        $masterFader.css('top', (70 + (e.clientY - 115)));
+        $masterFader.css('top', e.pageY - 130);
         if( parseInt($masterFader.css('top')) >= 315 ) {
           $masterFader.css('top', '315px');
         } else if( parseInt($masterFader.css('top')) < -35 ) {
