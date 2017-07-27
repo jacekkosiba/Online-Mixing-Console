@@ -8,6 +8,9 @@ $(function(){ //DOMContentLoaded
   let counter = 0;
   const tracksArr = ['./../audio/BP/DRUMS.wav', './../audio/BP/BASS.wav', './../audio/BP/GTR.wav', './../audio/BP/VOC.wav'];
   const tracksNames = ['DRUMS', 'BASS', 'GTR', 'VOC'];
+  const tracksSoloed = [false, false, false, false];
+
+
 
 
 
@@ -44,9 +47,18 @@ $(function(){ //DOMContentLoaded
 
     const $fader = $('.fader');
 
+    function checkIfNotSoloed() {
+      const arr = tracksSoloed.filter( function(i) {
+        return i === true
+      });
+      return arr.length > 0 ? false : true;
+    };
+
 
     function setVolume(index, thisFader) {
+      if( tracksSoloed[index] || checkIfNotSoloed() ) {
         tracksGroup.sounds[index].volume = ( parseInt(thisFader.css('top')) - 315 ) / -350;
+      };
     };
 
 
@@ -55,19 +67,24 @@ $(function(){ //DOMContentLoaded
         e.preventDefault();
 
         const $mute = $(this).parent().parent().prev().find('.mute');
+        const $solo = $(this).parent().parent().prev().find('.solo');
+
 
         if ( $mute.hasClass('muted') ) {
-          console.log('track is muted');
+
+            null;
+
         } else {
-          if( e.buttons === 1 ) {
-            $(this).css('top', e.pageY - 130);
-            if( parseInt($(this).css('top')) >= 315 ) {
-              $(this).css('top', '315px');
-            } else if( parseInt($(this).css('top')) < -35 ) {
-              $(this).css('top', '-35px');
-            };
-         };
-         setVolume( $(this).data('id'), $(this) );
+
+            if( e.buttons === 1 ) {
+              $(this).css('top', e.pageY - 130);
+              if( parseInt($(this).css('top')) >= 315 ) {
+                $(this).css('top', '315px');
+              } else if( parseInt($(this).css('top')) < -35 ) {
+                $(this).css('top', '-35px');
+              };
+              setVolume( $(this).data('id'), $(this) );
+           };
        };
 
     });
@@ -77,6 +94,7 @@ $(function(){ //DOMContentLoaded
 
     $fader.on('dblclick', function() {
         if ( $mute.hasClass('muted') ) {
+          null;
         } else {
           $(this).css('top', '70px');
           setVolume( $(this).data('id'), $(this) );
@@ -114,29 +132,53 @@ $(function(){ //DOMContentLoaded
     // solo
 
 
+      // const $solo = $('.solo');
 
       const $solo = $('.solo');
 
+
       $solo.on('click', function() {
 
-          const id = $(this).parent().parent().find('.fader').data('id');
+        const self = this;
+        const $self = $(this);
+        let notSoloed = true;
 
-          if( !$(this).hasClass('soloed') ) {
-            tracksGroup.sounds.forEach( (t,i) => {
-              if( i !== id ) {
-                t.volume = 0;
+          $solo.each( function() {
+
+            const id = $(this).parent().parent().find('.fader').data('id');
+            const thisFader = $(this).parent().parent().find('.fader');
+
+            if( self === this ) {
+              if( !$self.hasClass('soloed') ) {
+                tracksSoloed[id] = true;
+                setVolume( id, thisFader );
+                $self.addClass('soloed');
+              } else {
+                tracksGroup.sounds[id].volume = 0;
+                $self.removeClass('soloed');
+                tracksSoloed[id] = false;
               };
+            } else {
+              if( !$(this).hasClass('soloed') ) {
+                tracksGroup.sounds[id].volume = 0;
+              }
+            };;
+
+            if( $(this).hasClass('soloed') ) {
+              notSoloed = false;
+            };
+
+          });
+
+          if( notSoloed ) {
+            $solo.each(function() {
+              const id = $(this).parent().parent().find('.fader').data('id');
+              const thisFader = $(this).parent().parent().find('.fader');
+
+              setVolume(id, thisFader);
+
             });
-            $(this).addClass('soloed');
-          } else {
-            tracksGroup.sounds.forEach( (t,i) => {
-              if( i !== id ) {
-                setVolume(i, $(this) );
-              };
-            });
-            $(this).removeClass('soloed');
           };
-
       });
 
 
