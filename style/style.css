@@ -22,6 +22,13 @@ body {
   flex-direction: column;
 }
 
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 
 
 /* mixer */
@@ -63,6 +70,7 @@ body {
 
 }
 
+
 .master {
   height: 70px;
   width: 35px;
@@ -95,7 +103,7 @@ body {
 
 .transport {
   background: lightgrey;
-  width: 400px;
+  width: 720px;
   height: 100px;
   display: flex;
   justify-content: center;
@@ -123,8 +131,8 @@ body {
 }
 
 .buttonBox button {
-  width: 25px;
-  height: 25px;
+  width: 35px;
+  height: 35px;
 }
 
 .muted {
@@ -134,6 +142,36 @@ body {
 .soloed {
   background: yellow;
 }
+
+
+/*Pan box*/
+
+.panKnob {
+  background: grey;
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+  /*transform: rotate();*/
+}
+
+
+
+.knobMark {
+  height: 35px;
+  width: 1px;
+  background: black;
+  position: relative;
+  right: -35px;
+}
+
+
+/* effect box */
+
+.effectBox {
+  height: 100px;
+}
+
+
 
 /* Loading box */
 

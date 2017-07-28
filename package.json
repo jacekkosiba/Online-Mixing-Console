@@ -9,7 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "pizzicato": "^0.6.1"
+    "pizzicato": "^0.6.1",
+    "web-audio-api": "^0.2.2"
   },
   "devDependencies": {
     "webpack-dev-server": "^2.6.1"
