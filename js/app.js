@@ -6,9 +6,9 @@ $(function(){ //DOMContentLoaded
 
   let tracksGroup = new Pizzicato.Group();
   let counter = 0;
-  const tracksArr = ['./../audio/BP/DRUMS.wav', './../audio/BP/BASS.wav', './../audio/BP/GTR.wav', './../audio/BP/VOC.wav', './../audio/BP/DRUMS.wav', './../audio/BP/BASS.wav', './../audio/BP/GTR.wav', './../audio/BP/VOC.wav'];
-  const tracksNames = ['DRUMS', 'BASS', 'GTR', 'VOC', 'DRUMS2', 'BASS2', 'GTR2', 'VOC2'];
-  const tracksSoloed = [false, false, false, false, false, false, false, false];
+  const tracksArr = ['./../audio/BP/DRUMS.wav', './../audio/BP/BASS.wav', './../audio/BP/GTR.wav', './../audio/BP/VOC.wav'];
+  const tracksNames = ['DRUMS', 'BASS', 'GTR', 'VOC' ];
+  const tracksSoloed = [false, false, false, false ];
 
 
 
@@ -65,10 +65,10 @@ $(function(){ //DOMContentLoaded
     $fader.on('mousemove', function(e) {
 
         e.preventDefault();
-        console.log(e.pageY);
 
         const $mute = $(this).parent().parent().prev().find('.mute');
         const $solo = $(this).parent().parent().prev().find('.solo');
+
 
 
         if ( $mute.hasClass('muted') ) {
@@ -353,25 +353,24 @@ $(function(){ //DOMContentLoaded
   // stereo pan feautures
 
 
+  tracksGroup.sounds.forEach( (t, i) => {
+    window['stereoPanner' + i] = new Pizzicato.Effects.StereoPanner({
+       pan: 0
+     });
 
-  const stereoPanner = new Pizzicato.Effects.StereoPanner({
-    pan: 0.0
+    t.addEffect(window['stereoPanner' + i]);
   });
 
-  tracksGroup.sounds.forEach( (t) => {
-    t.addEffect(stereoPanner);
-  });
 
   function setPan(index, thisKnob, deg) {
     // tracksGroup.sounds[index].effects[0].options.pan = ( parseInt(thisKnob.css('transform')) ;
     if ( deg > 0 ) {
-      tracksGroup.sounds[index].effects[0].options.pan = (deg / 100) -0.4 ;
+      tracksGroup.sounds[index].effects[0].pan = (deg / 100) -0.4 ;
     } else if ( deg < 0 ) {
-      tracksGroup.sounds[index].effects[0].options.pan = (deg / 100) +0.4 ;
+      tracksGroup.sounds[index].effects[0].pan = (deg / 100) +0.4 ;
     } else {
-      tracksGroup.sounds[index].effects[0].options.pan = 0;
+      tracksGroup.sounds[index].effects[0].pan = 0;
     };
-
   };
 
 
@@ -380,10 +379,10 @@ $(function(){ //DOMContentLoaded
 
   panKnobs.forEach( (t,i) => {
 
-    var dragging = false
+    let dragging = false
 
     $(function () {
-        var target = $('.panKnob').eq(i);
+        const target = $('.panKnob').eq(i);
         target.mousedown(function() {
             dragging = true
         })
