@@ -45,7 +45,8 @@ $(function(){ //DOMContentLoaded
 
 
 
-    const $fader = $('.fader');
+    // const $fader = $('.fader');
+    const $fader = document.querySelectorAll('.fader');
 
     function checkIfNotSoloed() {
       const arr = tracksSoloed.filter( function(i) {
@@ -62,45 +63,74 @@ $(function(){ //DOMContentLoaded
     };
 
 
-    $fader.on('mousemove', function(e) {
+    // $fader.on('mousemove', function(e) {
+    //
+    //     e.preventDefault();
+    //
+    //     const $mute = $(this).parent().parent().prev().find('.mute');
+    //     const $solo = $(this).parent().parent().prev().find('.solo');
+    //
+    //
+    //
+    //     if ( $mute.hasClass('muted') ) {
+    //
+    //         null;
+    //
+    //     } else {
+    //
+    //         if( e.buttons === 1 ) {
+    //           $(this).css('top', e.pageY - 310);
+    //           if( parseInt($(this).css('top')) >= 315 ) {
+    //             $(this).css('top', '315px');
+    //           } else if( parseInt($(this).css('top')) < -35 ) {
+    //             $(this).css('top', '-35px');
+    //           };
+    //           setVolume( $(this).data('id'), $(this) );
+    //        };
+    //    };
+    //
+    // });
 
-        e.preventDefault();
-
-        const $mute = $(this).parent().parent().prev().find('.mute');
-        const $solo = $(this).parent().parent().prev().find('.solo');
 
 
+    $fader.forEach( (t,i) => {
 
-        if ( $mute.hasClass('muted') ) {
+      let dragging = false
 
-            null;
+      $(function () {
+          const target = $('.fader').eq(i);
+          target.mousedown(function() {
+              dragging = true
+          })
+          $(document).mouseup(function() {
+              dragging = false
+          })
+          $(document).mousemove(function(e) {
+              if (dragging) {
 
-        } else {
+              target.css('top', e.pageY - 310);
+                if( parseInt(target.css('top')) >= 315 ) {
+                  target.css('top', '315px');
+                } else if( parseInt(target.css('top')) < -35 ) {
+                  target.css('top', '-35px');
+                };
+                setVolume( target.data('id'), target );
 
-            if( e.buttons === 1 ) {
-              $(this).css('top', e.pageY - 310);
-              if( parseInt($(this).css('top')) >= 315 ) {
-                $(this).css('top', '315px');
-              } else if( parseInt($(this).css('top')) < -35 ) {
-                $(this).css('top', '-35px');
               };
-              setVolume( $(this).data('id'), $(this) );
-           };
-       };
+          });
 
-    });
+              // double click on fader
 
+          target.on('dblclick', function() {
+            if ( $mute.hasClass('muted') ) {
+              null;
+            } else {
+              target.css('top', '70px');
+              setVolume( target.data('id'), target );
+            };
+          });
 
-    // double click on fader
-
-    $fader.on('dblclick', function() {
-        if ( $mute.hasClass('muted') ) {
-          null;
-        } else {
-          $(this).css('top', '70px');
-          setVolume( $(this).data('id'), $(this) );
-        };
-
+      });
     });
 
 
@@ -321,31 +351,42 @@ $(function(){ //DOMContentLoaded
   };
 
 
-  $masterFader.on('mousemove', function(e) {
+  function MasterFaderMove() {
 
-      e.preventDefault();
+    let dragging = false
 
+    $(function () {
+        $masterFader.mousedown(function() {
+            dragging = true
+        })
+        $(document).mouseup(function() {
+            dragging = false
+        })
+        $(document).mousemove(function(e) {
+            if (dragging) {
 
-      if( e.buttons === 1 ) {
-        $masterFader.css('top', e.pageY - 310);
-        if( parseInt($masterFader.css('top')) >= 315 ) {
-          $masterFader.css('top', '315px');
-        } else if( parseInt($masterFader.css('top')) < -35 ) {
-          $masterFader.css('top', '-35px');
-        };
-     };
+            $masterFader.css('top', e.pageY - 310);
+              if( parseInt($masterFader.css('top')) >= 315 ) {
+                $masterFader.css('top', '315px');
+              } else if( parseInt($masterFader.css('top')) < -35 ) {
+                $masterFader.css('top', '-35px');
+              };
+              setMasterVolume();
 
-     setMasterVolume();
+            };
+        });
 
-  });
+            // double click on fader
 
-    // double click on masterfader
-  $masterFader.on('dblclick', function() {
+        $masterFader.on('dblclick', function() {
+          $masterFader.css('top', '70px');
+          setMasterVolume();
+        });
 
-      $masterFader.css('top', '70px');
-      setMasterVolume();
+    });
+  };
 
-  });
+  MasterFaderMove();
 
 
 
