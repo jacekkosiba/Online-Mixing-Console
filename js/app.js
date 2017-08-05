@@ -438,16 +438,16 @@ $(function(){ //DOMContentLoaded
                 if( degree > 140 ) {
                   degree = 140;
                 };
-                target.css('-moz-transform', 'rotate(' + degree + 'deg)');
+                target.css('-moz-transform', 'rotate(' + (- degree) + 'deg)');
                 target.css('-moz-transform-origin', '50% 50%');
-                target.css('-webkit-transform', 'rotate(' + degree + 'deg)');
+                target.css('-webkit-transform', 'rotate(' + (- degree) + 'deg)');
                 target.css('-webkit-transform-origin', '50% 50%');
-                target.css('-o-transform', 'rotate(' + degree + 'deg)');
+                target.css('-o-transform', 'rotate(' + (- degree) + 'deg)');
                 target.css('-o-transform-origin', '50% 50%');
-                target.css('-ms-transform', 'rotate(' + degree + 'deg)');
+                target.css('-ms-transform', 'rotate(' + (- degree) + 'deg)');
                 target.css('-ms-transform-origin', '50% 50%');
 
-                setPan(i, target, degree);
+                setPan(i, target, (- degree));
 
             };
         });
