@@ -187,6 +187,11 @@ body {
   height: 35px;
 }
 
+.effectBtn5 {
+  width: 50%;
+  height: 35px;
+}
+
 .effectOn {
   background: green;
 }

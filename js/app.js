@@ -31,7 +31,7 @@ $(function(){ //DOMContentLoaded
 
       // creating channel strips
 
-      let newStrip = $('<div class="strip"><div class="effectBox"><button class="reverb effectBtn">REVERB</button></div><div class="panBox"><div class="panKnob"><div class="knobMark"></div></div></div><div class="buttonBox"><button class="solo">S</button><button class="mute">M</button></div><div class="trackbox"><div class="track"><div data-id='+i+' class="fader'+i+' fader"></div></div></div><p class="label">'+tracksNames[i]+'</p></div>');
+      let newStrip = $('<div class="strip"><div class="effectBox"><button class="hpf effectBtn5">HPF</button><button class="lpf effectBtn5">LPF</button><button class="reverb effectBtn">REVERB</button></div><div class="panBox"><div class="panKnob"><div class="knobMark"></div></div></div><div class="buttonBox"><button class="solo">S</button><button class="mute">M</button></div><div class="trackbox"><div class="track"><div data-id='+i+' class="fader'+i+' fader"></div></div></div><p class="label">'+tracksNames[i]+'</p></div>');
       $('.masterStrip').before(newStrip);
 
       track.volume = 0.6999;
@@ -494,7 +494,6 @@ $(function(){ //DOMContentLoaded
 
       if( !$(e.target).hasClass('effectOn') ) {
 
-        console.log('reverb ON!');
         $(e.target).addClass('effectOn');
 
         window['reverb' + id] = new Pizzicato.Effects.Reverb({
@@ -507,16 +506,82 @@ $(function(){ //DOMContentLoaded
 
       } else {
 
-        console.log('reverb OFF!');
         $(e.target).removeClass('effectOn');
 
         tracksGroup.sounds[id].removeEffect(window['reverb' + id]);
 
       };
 
-
-
   });
+
+
+
+
+    // hpf
+
+
+    const $hpf = $('.hpf');
+
+
+    $hpf.on('click', function(e) {
+
+        const id = $(e.target).parent().parent().find('.fader').data('id');
+
+        if( !$(e.target).hasClass('effectOn') ) {
+
+          $(e.target).addClass('effectOn');
+
+          window['hpf' + id] = new Pizzicato.Effects.HighPassFilter({
+             frequency: 400,
+             peak: 3,
+           });
+
+          tracksGroup.sounds[id].addEffect(window['hpf' + id]);
+
+        } else {
+
+          $(e.target).removeClass('effectOn');
+
+          tracksGroup.sounds[id].removeEffect(window['hpf' + id]);
+
+        };
+
+    });
+
+
+
+
+        // hpf
+
+
+        const $lpf = $('.lpf');
+
+
+        $lpf.on('click', function(e) {
+
+            const id = $(e.target).parent().parent().find('.fader').data('id');
+
+            if( !$(e.target).hasClass('effectOn') ) {
+
+              $(e.target).addClass('effectOn');
+
+              window['lpf' + id] = new Pizzicato.Effects.LowPassFilter({
+                 frequency: 4000,
+                 peak: 3,
+               });
+
+              tracksGroup.sounds[id].addEffect(window['lpf' + id]);
+
+            } else {
+
+              $(e.target).removeClass('effectOn');
+
+              tracksGroup.sounds[id].removeEffect(window['lpf' + id]);
+
+            };
+
+        });
+
 
 
 
