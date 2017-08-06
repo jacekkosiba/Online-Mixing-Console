@@ -179,6 +179,16 @@ body {
 
 .effectBox {
   height: 100px;
+  width: 100%;
+}
+
+.effectBtn {
+  width: 100%;
+  height: 35px;
+}
+
+.effectOn {
+  background: green;
 }
 
 
