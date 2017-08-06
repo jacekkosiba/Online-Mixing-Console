@@ -4,6 +4,7 @@ $(function(){ //DOMContentLoaded
 
 // loading tracks from array
 
+
   let tracksGroup = new Pizzicato.Group();
   let counter = 0;
   const tracksArr = ['./../audio/BP/DRUMS.wav', './../audio/BP/BASS.wav', './../audio/BP/GTR.wav', './../audio/BP/VOC.wav'];
@@ -45,8 +46,12 @@ $(function(){ //DOMContentLoaded
 
 
 
-    // const $fader = $('.fader');
     const $fader = document.querySelectorAll('.fader');
+
+
+
+    // checkIfNotSoloed function
+
 
     function checkIfNotSoloed() {
       const arr = tracksSoloed.filter( function(i) {
@@ -54,6 +59,11 @@ $(function(){ //DOMContentLoaded
       });
       return arr.length > 0 ? false : true;
     };
+
+
+
+
+    // setVolume function
 
 
     function setVolume(index, thisFader) {
@@ -67,6 +77,10 @@ $(function(){ //DOMContentLoaded
       };
     };
 
+
+
+
+    // fader movement
 
 
     $fader.forEach( (t,i) => {
@@ -112,6 +126,7 @@ $(function(){ //DOMContentLoaded
 
 
 
+
   // solo & mute
 
 
@@ -138,8 +153,6 @@ $(function(){ //DOMContentLoaded
 
     // solo
 
-
-      // const $solo = $('.solo');
 
       const $solo = $('.solo');
 
@@ -318,13 +331,18 @@ $(function(){ //DOMContentLoaded
   function setMasterVolumeStart() {
       trackGroup.volume = 0.6999;
   };
-
   setMasterVolume();
+
+
 
 
   function setMasterVolume() {
       tracksGroup.volume = ( parseInt($masterFader.css('top')) - 315 ) / -350;
   };
+
+
+
+  // masterFader movement
 
 
   function MasterFaderMove() {
@@ -367,8 +385,12 @@ $(function(){ //DOMContentLoaded
 
 
 
+
+
   // stereo pan feautures
 
+
+  // adding new stereoPanner effect to each track
 
   tracksGroup.sounds.forEach( (t, i) => {
     window['stereoPanner' + i] = new Pizzicato.Effects.StereoPanner({
@@ -377,6 +399,10 @@ $(function(){ //DOMContentLoaded
 
     t.addEffect(window['stereoPanner' + i]);
   });
+
+
+
+  // function setPan
 
 
   function setPan(index, thisKnob, deg) {
@@ -390,6 +416,10 @@ $(function(){ //DOMContentLoaded
     };
   };
 
+
+
+
+  // panKnobs movement
 
 
   const panKnobs = document.querySelectorAll('.panKnob');
