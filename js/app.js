@@ -57,39 +57,15 @@ $(function(){ //DOMContentLoaded
 
 
     function setVolume(index, thisFader) {
-      if( tracksSoloed[index] || checkIfNotSoloed() ) {
+
+      const $mute = thisFader.parent().parent().prev().find('.mute');
+
+      if( $mute.hasClass('muted') ) {
+        null;
+      } else if( tracksSoloed[index] || checkIfNotSoloed() ) {
         tracksGroup.sounds[index].volume = ( parseInt(thisFader.css('top')) - 315 ) / -350;
       };
     };
-
-
-    // $fader.on('mousemove', function(e) {
-    //
-    //     e.preventDefault();
-    //
-    //     const $mute = $(this).parent().parent().prev().find('.mute');
-    //     const $solo = $(this).parent().parent().prev().find('.solo');
-    //
-    //
-    //
-    //     if ( $mute.hasClass('muted') ) {
-    //
-    //         null;
-    //
-    //     } else {
-    //
-    //         if( e.buttons === 1 ) {
-    //           $(this).css('top', e.pageY - 310);
-    //           if( parseInt($(this).css('top')) >= 315 ) {
-    //             $(this).css('top', '315px');
-    //           } else if( parseInt($(this).css('top')) < -35 ) {
-    //             $(this).css('top', '-35px');
-    //           };
-    //           setVolume( $(this).data('id'), $(this) );
-    //        };
-    //    };
-    //
-    // });
 
 
 
@@ -123,7 +99,7 @@ $(function(){ //DOMContentLoaded
 
           target.on('dblclick', function() {
             if ( $mute.hasClass('muted') ) {
-              null;
+              target.css('top', '70px');
             } else {
               target.css('top', '70px');
               setVolume( target.data('id'), target );
@@ -153,8 +129,8 @@ $(function(){ //DOMContentLoaded
             tracksGroup.sounds[id].volume = 0;
             $(this).addClass('muted');
           } else {
-            setVolume( id, thisFader );
             $(this).removeClass('muted');
+            setVolume( id, thisFader );
           };
       });
 
