@@ -54,11 +54,13 @@ body {
   justify-content: flex-end;
   align-items: center;
   padding: 5px;
+  width: 80px;
 }
 
 .masterStrip {
   background: darkred;
 }
+
 
 .trackbox {
   height: 420px;
@@ -134,7 +136,7 @@ body {
 /* solo/mute */
 
 .buttonBox {
-  margin: 15px 0 15px 0;
+  margin: 7.5px 0 7.5px 0;
 }
 
 .buttonBox button {
@@ -154,6 +156,7 @@ body {
 /*Pan box*/
 
 .panBox {
+  margin: 7.5px 0 7.5px 0;
 }
 
 .panKnob {
@@ -175,20 +178,42 @@ body {
 }
 
 
-/* effect box */
+/* effect choose strip */
 
-.effectBox {
-  height: 100px;
-  width: 100%;
+.chooseFx {
+  background: #56306b;
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 5px;
+  width: 100px;
 }
 
-.effectBtn {
+.chooseFx .label{
+  color: white;
+}
+
+.chooseBtn {
   width: 100%;
   height: 35px;
 }
 
-.effectBtn5 {
-  width: 50%;
+
+/* effect box */
+
+.effectBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  width: 100%;
+  margin: 7.5px 0 7.5px 0;
+}
+
+.effectBtn {
+  width: 70px;
   height: 35px;
 }
 
