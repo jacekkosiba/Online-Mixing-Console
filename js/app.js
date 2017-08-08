@@ -478,7 +478,145 @@ $(function(){ //DOMContentLoaded
 
 
 
-  // effects
+  // effects functionalities
+
+  const $mixer = $('.mixer');
+
+
+  // hpf
+  $mixer.on('click', '.hpf', function(e) {
+
+      const id = $(e.target).parent().parent().find('.fader').data('id');
+      console.log( id );
+
+      if( !$(e.target).hasClass('effectOn') ) {
+
+        $(e.target).addClass('effectOn');
+
+        window['hpf' + id] = new Pizzicato.Effects.HighPassFilter({
+           frequency: 400,
+           peak: 3,
+         });
+
+        tracksGroup.sounds[id].addEffect(window['hpf' + id]);
+
+      }
+      else {
+
+        $(e.target).removeClass('effectOn');
+
+        tracksGroup.sounds[id].removeEffect(window['hpf' + id]);
+
+      };
+
+  });
+
+  // lpf
+  $mixer.on('click', '.lpf', function(e) {
+
+      const id = $(e.target).parent().parent().find('.fader').data('id');
+
+      if( !$(e.target).hasClass('effectOn') ) {
+
+        $(e.target).addClass('effectOn');
+
+        window['lpf' + id] = new Pizzicato.Effects.LowPassFilter({
+           frequency: 4000,
+           peak: 3,
+         });
+
+        tracksGroup.sounds[id].addEffect(window['lpf' + id]);
+
+      } else {
+
+        $(e.target).removeClass('effectOn');
+
+        tracksGroup.sounds[id].removeEffect(window['lpf' + id]);
+
+      };
+
+  });
+
+  // compressor
+  $mixer.on('click', '.compressor', function(e) {
+
+      const id = $(e.target).parent().parent().find('.fader').data('id');
+
+      if( !$(e.target).hasClass('effectOn') ) {
+
+        $(e.target).addClass('effectOn');
+
+        window['compressor' + id] = new Pizzicato.Effects.Compressor({
+           treshold: -30,
+           ratio: 12
+         });
+
+        tracksGroup.sounds[id].addEffect(window['compressor' + id]);
+
+      } else {
+
+        $(e.target).removeClass('effectOn');
+
+        tracksGroup.sounds[id].removeEffect(window['compressor' + id]);
+
+      };
+  });
+
+  // fuzz
+  $mixer.on('click', '.fuzz', function(e) {
+
+      const id = $(e.target).parent().parent().find('.fader').data('id');
+
+      if( !$(e.target).hasClass('effectOn') ) {
+
+        $(e.target).addClass('effectOn');
+
+        window['fuzz' + id] = new Pizzicato.Effects.Quadrafuzz({
+           lowGain: 1.0,
+           midLowGain: 1.0,
+           midHighGain: 1.0,
+           highGain: 1.0,
+           mix: 0.5,
+         });
+
+        tracksGroup.sounds[id].addEffect(window['fuzz' + id]);
+
+      } else {
+
+        $(e.target).removeClass('effectOn');
+
+        tracksGroup.sounds[id].removeEffect(window['fuzz' + id]);
+
+      };
+  });
+
+  // reverb
+  $mixer.on('click', '.reverb', function(e) {
+
+      const id = $(e.target).parent().parent().find('.fader').data('id');
+
+      if( !$(e.target).hasClass('effectOn') ) {
+
+        $(e.target).addClass('effectOn');
+
+        window['reverb' + id] = new Pizzicato.Effects.Reverb({
+           time: 1.5,
+           decay: 3,
+           mix: 0.6
+         });
+
+        tracksGroup.sounds[id].addEffect(window['reverb' + id]);
+
+      } else {
+
+        $(e.target).removeClass('effectOn');
+
+        tracksGroup.sounds[id].removeEffect(window['reverb' + id]);
+
+      };
+  });
+
+
 
 
 
@@ -489,139 +627,33 @@ $(function(){ //DOMContentLoaded
 
 
 
+
   $chooseBtns.each( (i,t) => {
+
 
     let dragging = false
 
+
     $(function () {
+
         const target = $chooseBtns.eq(i);
+
 
         target.mousedown(function() {
             dragging = true
         });
 
+
         $('.strip').mouseup(function() {
+
             if ( dragging === true ) {
               $(this).find('.effectBox').append(
                 '<button class="' + target.attr('data-passClass') + ' effectBtn">' + target.attr('data-name') + '</button>'
               );
-
-
-
-              // // hpf
-              // const $hpf = $('.hpf');
-              // $hpf.on('click', function(e) {
-              //
-              //     const id = $(e.target).parent().parent().find('.fader').data('id');
-              //     console.log( id );
-              //
-              //     if( !$(e.target).hasClass('effectOn') ) {
-              //
-              //       $(e.target).addClass('effectOn');
-              //
-              //       window['hpf' + id] = new Pizzicato.Effects.HighPassFilter({
-              //          frequency: 400,
-              //          peak: 3,
-              //        });
-              //
-              //       tracksGroup.sounds[id].addEffect(window['hpf' + id]);
-              //
-              //     }
-              //     else {
-              //
-              //       $(e.target).removeClass('effectOn');
-              //
-              //       tracksGroup.sounds[id].removeEffect(window['hpf' + id]);
-              //
-              //     };
-              //
-              // });
-              //
-              // // lpf
-              // const $lpf = $('.lpf');
-              // $lpf.on('click', function(e) {
-              //
-              //     const id = $(e.target).parent().parent().find('.fader').data('id');
-              //
-              //     if( !$(e.target).hasClass('effectOn') ) {
-              //
-              //       $(e.target).addClass('effectOn');
-              //
-              //       window['lpf' + id] = new Pizzicato.Effects.LowPassFilter({
-              //          frequency: 4000,
-              //          peak: 3,
-              //        });
-              //
-              //       tracksGroup.sounds[id].addEffect(window['lpf' + id]);
-              //
-              //     } else {
-              //
-              //       $(e.target).removeClass('effectOn');
-              //
-              //       tracksGroup.sounds[id].removeEffect(window['lpf' + id]);
-              //
-              //     };
-              //
-              // });
-              //
-              // // compressor
-              // const $compressor = $('.compressor');
-              // $compressor.on('click', function(e) {
-              //
-              //     const id = $(e.target).parent().parent().find('.fader').data('id');
-              //
-              //     if( !$(e.target).hasClass('effectOn') ) {
-              //
-              //       $(e.target).addClass('effectOn');
-              //
-              //       window['compressor' + id] = new Pizzicato.Effects.Compressor({
-              //          treshold: -30,
-              //          ratio: 12
-              //        });
-              //
-              //       tracksGroup.sounds[id].addEffect(window['compressor' + id]);
-              //
-              //     } else {
-              //
-              //       $(e.target).removeClass('effectOn');
-              //
-              //       tracksGroup.sounds[id].removeEffect(window['compressor' + id]);
-              //
-              //     };
-              // });
-              //
-              // // reverb
-              // const $reverb = $('.reverb');
-              // $reverb.on('click', function(e) {
-              //
-              //     const id = $(e.target).parent().parent().find('.fader').data('id');
-              //
-              //     if( !$(e.target).hasClass('effectOn') ) {
-              //
-              //       $(e.target).addClass('effectOn');
-              //
-              //       window['reverb' + id] = new Pizzicato.Effects.Reverb({
-              //          time: 1.5,
-              //          decay: 3,
-              //          mix: 0.6
-              //        });
-              //
-              //       tracksGroup.sounds[id].addEffect(window['reverb' + id]);
-              //
-              //     } else {
-              //
-              //       $(e.target).removeClass('effectOn');
-              //
-              //       tracksGroup.sounds[id].removeEffect(window['reverb' + id]);
-              //
-              //     };
-              // });
-
-
-
-
             };
+
             dragging = false
+
         });
     });
   });
