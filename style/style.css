@@ -204,6 +204,22 @@ body {
 /* effect box */
 
 .effectBox {
+  font-size: 70%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  width: 100%;
+  margin: 7.5px 0 7.5px 0;
+}
+
+.effectBox p {
+}
+
+.chooseEffectBox {
+  font-size: 70%;
+  text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
