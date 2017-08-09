@@ -538,184 +538,359 @@ $(function(){ //DOMContentLoaded
   // lpf
   $mixer.on('click', '.lpf', function(e) {
 
-      const id = $(e.target).parent().parent().find('.fader').data('id');
+    if( $(e.target).parent().parent().hasClass('masterStrip') ) {
 
-      if( !$(e.target).hasClass('effectOn') ) {
+          if( !$(e.target).hasClass('effectOn') ) {
 
-        $(e.target).addClass('effectOn');
+            $(e.target).addClass('effectOn');
 
-        window['lpf' + $(this).attr('data-instance')] = new Pizzicato.Effects.LowPassFilter({
-           frequency: 4000,
-           peak: 3,
-         });
+            window['lpf' + $(this).attr('data-instance')] = new Pizzicato.Effects.LowPassFilter({
+               frequency: 4000,
+               peak: 3,
+             });
 
-        tracksGroup.sounds[id].addEffect(window['lpf' + $(this).attr('data-instance')]);
+            tracksGroup.addEffect(window['lpf' + $(this).attr('data-instance')]);
 
-      } else {
+          } else {
 
-        $(e.target).removeClass('effectOn');
+            $(e.target).removeClass('effectOn');
 
-        tracksGroup.sounds[id].removeEffect(window['lpf' + $(this).attr('data-instance')]);
+            tracksGroup.removeEffect(window['lpf' + $(this).attr('data-instance')]);
 
-      };
+          };
+
+    } else {
+
+          const id = $(e.target).parent().parent().find('.fader').data('id');
+
+          if( !$(e.target).hasClass('effectOn') ) {
+
+            $(e.target).addClass('effectOn');
+
+            window['lpf' + $(this).attr('data-instance')] = new Pizzicato.Effects.LowPassFilter({
+               frequency: 4000,
+               peak: 3,
+             });
+
+            tracksGroup.sounds[id].addEffect(window['lpf' + $(this).attr('data-instance')]);
+
+          } else {
+
+            $(e.target).removeClass('effectOn');
+
+            tracksGroup.sounds[id].removeEffect(window['lpf' + $(this).attr('data-instance')]);
+
+          };
+    };
 
   });
 
   // compressor
   $mixer.on('click', '.compressor', function(e) {
 
-      const id = $(e.target).parent().parent().find('.fader').data('id');
+    if( $(e.target).parent().parent().hasClass('masterStrip') ) {
 
-      if( !$(e.target).hasClass('effectOn') ) {
+          if( !$(e.target).hasClass('effectOn') ) {
 
-        $(e.target).addClass('effectOn');
+            $(e.target).addClass('effectOn');
 
-        window['compressor' + $(this).attr('data-instance')] = new Pizzicato.Effects.Compressor({
-           treshold: -30,
-           ratio: 12
-         });
+            window['compressor' + $(this).attr('data-instance')] = new Pizzicato.Effects.Compressor({
+                treshold: -30,
+                ratio: 12
+             });
 
-        tracksGroup.sounds[id].addEffect(window['compressor' + $(this).attr('data-instance')]);
+            tracksGroup.addEffect(window['compressor' + $(this).attr('data-instance')]);
 
-      } else {
+          } else {
 
-        $(e.target).removeClass('effectOn');
+            $(e.target).removeClass('effectOn');
 
-        tracksGroup.sounds[id].removeEffect(window['compressor' + $(this).attr('data-instance')]);
+            tracksGroup.removeEffect(window['compressor' + $(this).attr('data-instance')]);
 
-      };
+          };
+
+    } else {
+
+          const id = $(e.target).parent().parent().find('.fader').data('id');
+
+          if( !$(e.target).hasClass('effectOn') ) {
+
+            $(e.target).addClass('effectOn');
+
+            window['compressor' + $(this).attr('data-instance')] = new Pizzicato.Effects.Compressor({
+               treshold: -30,
+               ratio: 12
+             });
+
+            tracksGroup.sounds[id].addEffect(window['compressor' + $(this).attr('data-instance')]);
+
+          } else {
+
+            $(e.target).removeClass('effectOn');
+
+            tracksGroup.sounds[id].removeEffect(window['compressor' + $(this).attr('data-instance')]);
+
+          };
+    };
   });
 
   // fuzz
   $mixer.on('click', '.fuzz', function(e) {
 
+    if( $(e.target).parent().parent().hasClass('masterStrip') ) {
+
+          if( !$(e.target).hasClass('effectOn') ) {
+
+            $(e.target).addClass('effectOn');
+
+            window['fuzz' + $(this).attr('data-instance')] = new Pizzicato.Effects.Quadrafuzz({
+                lowGain: 1.0,
+                midLowGain: 0.6,
+                midHighGain: 0.78,
+                highGain: 0.9,
+                mix: 1,
+             });
+
+            tracksGroup.addEffect(window['fuzz' + $(this).attr('data-instance')]);
+
+          } else {
+
+            $(e.target).removeClass('effectOn');
+
+            tracksGroup.removeEffect(window['fuzz' + $(this).attr('data-instance')]);
+
+          };
+
+    } else {
+
       const id = $(e.target).parent().parent().find('.fader').data('id');
 
-      if( !$(e.target).hasClass('effectOn') ) {
+          if( !$(e.target).hasClass('effectOn') ) {
 
-        $(e.target).addClass('effectOn');
+            $(e.target).addClass('effectOn');
 
-        window['fuzz' + $(this).attr('data-instance')] = new Pizzicato.Effects.Quadrafuzz({
-           lowGain: 1.0,
-           midLowGain: 0.6,
-           midHighGain: 0.78,
-           highGain: 0.9,
-           mix: 1,
-         });
+            window['fuzz' + $(this).attr('data-instance')] = new Pizzicato.Effects.Quadrafuzz({
+               lowGain: 1.0,
+               midLowGain: 0.6,
+               midHighGain: 0.78,
+               highGain: 0.9,
+               mix: 1,
+             });
 
-        tracksGroup.sounds[id].addEffect(window['fuzz' + $(this).attr('data-instance')]);
+            tracksGroup.sounds[id].addEffect(window['fuzz' + $(this).attr('data-instance')]);
 
-      } else {
+          } else {
 
-        $(e.target).removeClass('effectOn');
+            $(e.target).removeClass('effectOn');
 
-        tracksGroup.sounds[id].removeEffect(window['fuzz' + $(this).attr('data-instance')]);
+            tracksGroup.sounds[id].removeEffect(window['fuzz' + $(this).attr('data-instance')]);
 
-      };
+          };
+    };
   });
 
   // distortion
   $mixer.on('click', '.distortion', function(e) {
 
-      const id = $(e.target).parent().parent().find('.fader').data('id');
+    if( $(e.target).parent().parent().hasClass('masterStrip') ) {
 
-      if( !$(e.target).hasClass('effectOn') ) {
+          if( !$(e.target).hasClass('effectOn') ) {
 
-        $(e.target).addClass('effectOn');
+            $(e.target).addClass('effectOn');
 
-        window['distortion' + $(this).attr('data-instance')] = new Pizzicato.Effects.Distortion({
-           gain: 1.0,
-         });
+            window['distortion' + $(this).attr('data-instance')] = new Pizzicato.Effects.Distortion({
+                gain: 1.0,
+             });
 
-        tracksGroup.sounds[id].addEffect(window['distortion' + $(this).attr('data-instance')]);
+            tracksGroup.addEffect(window['distortion' + $(this).attr('data-instance')]);
 
-      } else {
+          } else {
 
-        $(e.target).removeClass('effectOn');
+            $(e.target).removeClass('effectOn');
 
-        tracksGroup.sounds[id].removeEffect(window['distortion' + $(this).attr('data-instance')]);
+            tracksGroup.removeEffect(window['distortion' + $(this).attr('data-instance')]);
 
-      };
+          };
+
+    } else {
+
+          const id = $(e.target).parent().parent().find('.fader').data('id');
+
+          if( !$(e.target).hasClass('effectOn') ) {
+
+            $(e.target).addClass('effectOn');
+
+            window['distortion' + $(this).attr('data-instance')] = new Pizzicato.Effects.Distortion({
+               gain: 1.0,
+             });
+
+            tracksGroup.sounds[id].addEffect(window['distortion' + $(this).attr('data-instance')]);
+
+          } else {
+
+            $(e.target).removeClass('effectOn');
+
+            tracksGroup.sounds[id].removeEffect(window['distortion' + $(this).attr('data-instance')]);
+
+          };
+    };
   });
 
   // flanger
   $mixer.on('click', '.flanger', function(e) {
 
-      const id = $(e.target).parent().parent().find('.fader').data('id');
+    if( $(e.target).parent().parent().hasClass('masterStrip') ) {
 
-      if( !$(e.target).hasClass('effectOn') ) {
+          if( !$(e.target).hasClass('effectOn') ) {
 
-        $(e.target).addClass('effectOn');
+            $(e.target).addClass('effectOn');
 
-        window['flanger' + $(this).attr('data-instance')] = new Pizzicato.Effects.Flanger({
-          time: 0,
-          speed: 0.13,
-          depth: 0.25,
-          feedback: 0.8,
-          mix: 0.25
-         });
+            window['flanger' + $(this).attr('data-instance')] = new Pizzicato.Effects.Flanger({
+                time: 0,
+                speed: 0.13,
+                depth: 0.25,
+                feedback: 0.8,
+                mix: 0.25
+             });
 
-        tracksGroup.sounds[id].addEffect(window['flanger' + $(this).attr('data-instance')]);
+            tracksGroup.addEffect(window['flanger' + $(this).attr('data-instance')]);
 
-      } else {
+          } else {
 
-        $(e.target).removeClass('effectOn');
+            $(e.target).removeClass('effectOn');
 
-        tracksGroup.sounds[id].removeEffect(window['flanger' + $(this).attr('data-instance')]);
+            tracksGroup.removeEffect(window['flanger' + $(this).attr('data-instance')]);
 
-      };
+          };
+
+    } else {
+
+          const id = $(e.target).parent().parent().find('.fader').data('id');
+
+          if( !$(e.target).hasClass('effectOn') ) {
+
+            $(e.target).addClass('effectOn');
+
+            window['flanger' + $(this).attr('data-instance')] = new Pizzicato.Effects.Flanger({
+              time: 0,
+              speed: 0.13,
+              depth: 0.25,
+              feedback: 0.8,
+              mix: 0.25
+             });
+
+            tracksGroup.sounds[id].addEffect(window['flanger' + $(this).attr('data-instance')]);
+
+          } else {
+
+            $(e.target).removeClass('effectOn');
+
+            tracksGroup.sounds[id].removeEffect(window['flanger' + $(this).attr('data-instance')]);
+
+          };
+    };
   });
 
   // delay
   $mixer.on('click', '.delay', function(e) {
 
+    if( $(e.target).parent().parent().hasClass('masterStrip') ) {
+
+          if( !$(e.target).hasClass('effectOn') ) {
+
+            $(e.target).addClass('effectOn');
+
+            window['delay' + $(this).attr('data-instance')] = new Pizzicato.Effects.Delay({
+                feedback: 0.3,
+                time: 0.25,
+                mix: 0.25
+             });
+
+            tracksGroup.addEffect(window['delay' + $(this).attr('data-instance')]);
+
+          } else {
+
+            $(e.target).removeClass('effectOn');
+
+            tracksGroup.removeEffect(window['delay' + $(this).attr('data-instance')]);
+
+          };
+
+    } else {
+
       const id = $(e.target).parent().parent().find('.fader').data('id');
 
-      if( !$(e.target).hasClass('effectOn') ) {
+          if( !$(e.target).hasClass('effectOn') ) {
 
-        $(e.target).addClass('effectOn');
+            $(e.target).addClass('effectOn');
 
-        window['delay' + $(this).attr('data-instance')] = new Pizzicato.Effects.Delay({
-          feedback: 0.3,
-          time: 0.25,
-          mix: 0.25
-         });
+            window['delay' + $(this).attr('data-instance')] = new Pizzicato.Effects.Delay({
+              feedback: 0.3,
+              time: 0.25,
+              mix: 0.25
+             });
 
-        tracksGroup.sounds[id].addEffect(window['delay' + $(this).attr('data-instance')]);
+            tracksGroup.sounds[id].addEffect(window['delay' + $(this).attr('data-instance')]);
 
-      } else {
+          } else {
 
-        $(e.target).removeClass('effectOn');
+            $(e.target).removeClass('effectOn');
 
-        tracksGroup.sounds[id].removeEffect(window['delay' + $(this).attr('data-instance')]);
+            tracksGroup.sounds[id].removeEffect(window['delay' + $(this).attr('data-instance')]);
 
-      };
+          };
+    };
   });
 
   // reverb
   $mixer.on('click', '.reverb', function(e) {
 
-      const id = $(e.target).parent().parent().find('.fader').data('id');
+    if( $(e.target).parent().parent().hasClass('masterStrip') ) {
 
-      if( !$(e.target).hasClass('effectOn') ) {
+          if( !$(e.target).hasClass('effectOn') ) {
 
-        $(e.target).addClass('effectOn');
+            $(e.target).addClass('effectOn');
 
-        window['reverb' + $(this).attr('data-instance')] = new Pizzicato.Effects.Reverb({
-           time: 1.8,
-           decay: 3,
-           mix: 0.7
-         });
+            window['reverb' + $(this).attr('data-instance')] = new Pizzicato.Effects.Reverb({
+                time: 1.8,
+                decay: 3,
+                mix: 0.7
+             });
 
-        tracksGroup.sounds[id].addEffect(window['reverb' + $(this).attr('data-instance')]);
+            tracksGroup.addEffect(window['reverb' + $(this).attr('data-instance')]);
 
-      } else {
+          } else {
 
-        $(e.target).removeClass('effectOn');
+            $(e.target).removeClass('effectOn');
 
-        tracksGroup.sounds[id].removeEffect(window['reverb' + $(this).attr('data-instance')]);
+            tracksGroup.removeEffect(window['reverb' + $(this).attr('data-instance')]);
 
-      };
+          };
+
+    } else {
+
+          const id = $(e.target).parent().parent().find('.fader').data('id');
+
+          if( !$(e.target).hasClass('effectOn') ) {
+
+            $(e.target).addClass('effectOn');
+
+            window['reverb' + $(this).attr('data-instance')] = new Pizzicato.Effects.Reverb({
+               time: 1.8,
+               decay: 3,
+               mix: 0.7
+             });
+
+            tracksGroup.sounds[id].addEffect(window['reverb' + $(this).attr('data-instance')]);
+
+          } else {
+
+            $(e.target).removeClass('effectOn');
+
+            tracksGroup.sounds[id].removeEffect(window['reverb' + $(this).attr('data-instance')]);
+
+          };
+    };
   });
 
 
