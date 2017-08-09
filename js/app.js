@@ -477,7 +477,6 @@ $(function(){ //DOMContentLoaded
 
 
 
-
   // effects functionalities
 
   const $mixer = $('.mixer');
@@ -532,7 +531,7 @@ $(function(){ //DOMContentLoaded
 
           };
 
-    }
+    };
 
   });
 
