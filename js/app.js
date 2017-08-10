@@ -74,7 +74,6 @@ $(function(){ //DOMContentLoaded
         null;
       } else if( tracksSoloed[index] || checkIfNotSoloed() ) {
         tracksGroup.sounds[index].volume = ( parseInt(thisFader.css('top')) - 315 ) / -350;
-        console.log( tracksGroup.sounds[index].volume );
       };
     };
 
@@ -83,31 +82,39 @@ $(function(){ //DOMContentLoaded
 
     // fader movement
 
+let faderOffsetTop = $($fader).offset().top ;
+
+
 
     $fader.forEach( (t,i) => {
 
       let dragging = false
 
       $(function () {
+
           const target = $('.fader').eq(i);
+
           target.mousedown(function() {
               dragging = true
-          })
+          });
+
           $(document).mouseup(function() {
               dragging = false
-          })
+          });
+
           $(document).mousemove(function(e) {
               if (dragging) {
 
-              target.css('top', e.pageY - 310);
-                if( parseInt(target.css('top')) >= 315 ) {
-                  target.css('top', '315px');
-                } else if( parseInt(target.css('top')) < -35 ) {
-                  target.css('top', '-35px');
-                };
-                setVolume( target.data('id'), target );
+                target.css('top', (e.pageY - faderOffsetTop));
+                  if( parseInt(target.css('top')) >= 315 ) {
+                    target.css('top', '315px');
+                  } else if( parseInt(target.css('top')) < -35 ) {
+                    target.css('top', '-35px');
+                  };
 
-              };
+                  setVolume( target.data('id'), target );
+
+                };
           });
 
               // double click on fader
@@ -346,6 +353,11 @@ $(function(){ //DOMContentLoaded
   // masterFader movement
 
 
+
+
+let masterOffsetTop = $masterFader.offset().top ;
+
+
   function MasterFaderMove() {
 
     let dragging = false
@@ -358,9 +370,9 @@ $(function(){ //DOMContentLoaded
             dragging = false
         })
         $(document).mousemove(function(e) {
-            if (dragging) {
 
-            $masterFader.css('top', e.pageY - 310);
+            if (dragging) {
+            $masterFader.css('top', (e.pageY - masterOffsetTop) );
               if( parseInt($masterFader.css('top')) >= 315 ) {
                 $masterFader.css('top', '315px');
               } else if( parseInt($masterFader.css('top')) < -35 ) {
@@ -930,6 +942,9 @@ $(function(){ //DOMContentLoaded
 
             if ( dragging === true ) {
               fxCount++;
+              faderOffsetTop = faderOffsetTop + 35 ;
+              masterOffsetTop = masterOffsetTop + 35 ;
+              console.log(faderOffsetTop);
               $(this).find('.effectBox').append(
                 '<button class="' + target.attr('data-passClass') + ' effectBtn" data-instance=' + fxCount + '>' + target.attr('data-name') + '</button>'
               );
@@ -947,16 +962,16 @@ $(function(){ //DOMContentLoaded
   // drop fx here placeholder
 
 
-  $(document).on('mouseup', '.strip', function() {
-
-      let $effectBox = $('.effectBox');
-
-      if( $effectBox.find('.effectBtn').length > 0 ) {
-        $(this).find('.effectBox p').remove();
-      } else {
-        null
-      };
-  });
+  // $(document).on('mouseup', '.strip', function() {
+  //
+  //     let $effectBox = $('.effectBox');
+  //
+  //     if( $effectBox.find('.effectBtn').length > 0 ) {
+  //       $(this).find('.effectBox p').remove();
+  //     } else {
+  //       null
+  //     };
+  // });
 
 
 
