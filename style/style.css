@@ -86,7 +86,7 @@ body {
   background: red;
   position: relative;
   right: 16px;
-  top: 70px;
+  top: 35px;
 }
 
 .fader {
@@ -95,7 +95,7 @@ body {
   background: grey;
   position: relative;
   right: 16px;
-  top: 70px;
+  top: 35px;
 }
 
 /* labels */

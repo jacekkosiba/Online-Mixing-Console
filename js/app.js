@@ -34,7 +34,7 @@ $(function(){ //DOMContentLoaded
       let newStrip = $('<div class="strip"><div class="effectBox"><p>DROP FX HERE</p></div><div class="panBox"><div class="panKnob"><div class="knobMark"></div></div></div><div class="buttonBox"><button class="solo">S</button><button class="mute">M</button></div><div class="trackbox"><div class="track"><div data-id='+i+' class="fader'+i+' fader"></div></div></div><p class="label">'+tracksNames[i]+'</p></div>');
       $('.masterStrip').before(newStrip);
 
-      track.volume = 0.6999;
+      track.volume = 0.8;
 
 
   }); // end of forEach
@@ -74,6 +74,7 @@ $(function(){ //DOMContentLoaded
         null;
       } else if( tracksSoloed[index] || checkIfNotSoloed() ) {
         tracksGroup.sounds[index].volume = ( parseInt(thisFader.css('top')) - 315 ) / -350;
+        console.log( tracksGroup.sounds[index].volume );
       };
     };
 
@@ -113,9 +114,9 @@ $(function(){ //DOMContentLoaded
 
           target.on('dblclick', function() {
             if ( $mute.hasClass('muted') ) {
-              target.css('top', '70px');
+              target.css('top', '35px');
             } else {
-              target.css('top', '70px');
+              target.css('top', '35px');
               setVolume( target.data('id'), target );
             };
           });
@@ -329,7 +330,7 @@ $(function(){ //DOMContentLoaded
 
 
   function setMasterVolumeStart() {
-      trackGroup.volume = 0.6999;
+      trackGroup.volume = 0.8;
   };
   setMasterVolume();
 
@@ -373,7 +374,7 @@ $(function(){ //DOMContentLoaded
             // double click on fader
 
         $masterFader.on('dblclick', function() {
-          $masterFader.css('top', '70px');
+          $masterFader.css('top', '35px');
           setMasterVolume();
         });
 
