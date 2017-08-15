@@ -7,9 +7,12 @@ $(function(){ //DOMContentLoaded
 
   let tracksGroup = new Pizzicato.Group();
   let counter = 0;
-  const tracksArr = ['./../audio/BP/DRUMS.wav', './../audio/BP/BASS.wav', './../audio/BP/GTR.wav', './../audio/BP/VOC.wav'];
-  const tracksNames = ['DRUMS', 'BASS', 'GTR', 'VOC' ];
-  const tracksSoloed = [false, false, false, false ];
+  const tracksArr = ['./../audio/BP/DRUMS.wav', './../audio/BP/BASS.wav', './../audio/BP/GTR.wav', './../audio/BP/VOC.wav', './../audio/BP/DRUMS.wav', './../audio/BP/BASS.wav', './../audio/BP/GTR.wav', './../audio/BP/VOC.wav', './../audio/BP/VOC.wav'];
+  const tracksNames = ['DRUMS', 'BASS', 'GTR', 'VOC', 'DRUMS2', 'BASS2', 'GTR2', 'VOC2', 'VOC3' ];
+  const tracksSoloed = [false, false, false, false, false, false, false, false, false ];
+
+  let faderOffsetTop = 0;
+
 
 
 
@@ -82,7 +85,7 @@ $(function(){ //DOMContentLoaded
 
     // fader movement
 
-let faderOffsetTop = $($fader).offset().top ;
+faderOffsetTop = $($fader).offset().top ;
 
 
 

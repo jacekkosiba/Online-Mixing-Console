@@ -20,14 +20,13 @@ button:focus {outline:0;}
 /* background */
 
 body {
-  background: #232526;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+  background: black;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background-image: url('.././images/steelee.png');
+  background-size: cover;
 }
 
 .container {
@@ -49,7 +48,6 @@ body {
 /* channel strips */
 
 .strip {
-  background: lightgrey;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -59,18 +57,25 @@ body {
 }
 
 .masterStrip {
-  background: darkred;
+
 }
 
 
 .trackbox {
   height: 420px;
   width: 70px;
-  border: 1px solid black;
   display: flex;
   align-items: center;
   justify-content: center;
 
+}
+
+.strip .trackbox {
+  border: 1px solid black;
+}
+
+.masterStrip {
+  border: 1px solid darkred;
 }
 
 .track {
@@ -84,7 +89,7 @@ body {
 .master {
   height: 70px;
   width: 35px;
-  background-image: url('../images/fader2.png');
+  background-image: url('../images/faderVR.png');
   background-size: cover;
   position: relative;
   right: 16px;
@@ -111,10 +116,11 @@ body {
 
 .label {
   margin: 15px 0 15px 0;
+  color: lightgrey;
 }
 
 .masterStrip .label {
-  color: white;
+  color: darkred;
 }
 
 .masterSpace {
@@ -124,7 +130,7 @@ body {
 /* transport controls */
 
 .transport {
-  background: lightgrey;
+  /*background: lightgrey;*/
   width: 720px;
   height: 100px;
   display: flex;
@@ -207,14 +213,29 @@ body {
 
 .panBox {
   margin: 7.5px 0 7.5px 0;
+  background-size: 130%;
+  background-position: left;
+  height: 70px;
+  width: 70px;
+  background-image: url('../images/knobBack_Fotor.png');
+  background-size: contain;
+  background-position: 0 0.5px;
+  background-repeat: no-repeat;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+
 
 .panKnob {
   background-image: url('../images/knob2V.png');
   background-size: cover;
-  height: 70px;
-  width: 70px;
+  height: 50px;
+  width: 50px;
   border-radius: 50%;
+  /*display: none*/
 }
 
 
@@ -232,7 +253,7 @@ body {
 /* effect choose strip */
 
 .chooseFx {
-  background: #56306b;
+  /*background: #56306b;*/
   width: 100px;
   display: flex;
   flex-direction: column;
@@ -249,6 +270,18 @@ body {
 .chooseBtn {
   width: 100%;
   height: 35px;
+
+  border-bottom: 2px solid #171717;
+  border-right: 2px solid #413F3F;
+  border-left: 2px solid #8B8A86;
+  border-top: 2px solid #B6B5B3;
+
+  background-image: url('../images/greyBtn.png');
+  background-size: cover;
+}
+
+.chooseBtn:active {
+    filter: brightness(85%);
 }
 
 
@@ -267,7 +300,7 @@ body {
   height: 17.5px;
   font-size: 60%;
   text-align: center;
-
+  color: lightgrey;
 }
 
 .effectBox p {
