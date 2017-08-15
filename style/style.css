@@ -14,6 +14,7 @@
             user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
 }
+button:focus {outline:0;}
 
 
 /* background */
@@ -88,6 +89,9 @@ body {
   position: relative;
   right: 16px;
   top: 35px;
+  -webkit-box-shadow: -5px -5px 49px -2px rgba(0,0,0,0.75);
+  -moz-box-shadow: -5px -5px 49px -2px rgba(0,0,0,0.75);
+  box-shadow: -5px -5px 49px -2px rgba(0,0,0,0.75);
 }
 
 .fader {
@@ -98,6 +102,9 @@ body {
   position: relative;
   right: 16px;
   top: 35px;
+  -webkit-box-shadow: -5px -5px 49px -2px rgba(0,0,0,0.75);
+  -moz-box-shadow: -5px -5px 49px -2px rgba(0,0,0,0.75);
+  box-shadow: -5px -5px 49px -2px rgba(0,0,0,0.75);
 }
 
 /* labels */
@@ -137,6 +144,20 @@ body {
 .transport button {
   width: 50px;
   height: 50px;
+
+  border-bottom: 2px solid #171717;
+  border-right: 2px solid #413F3F;
+  border-left: 2px solid #8B8A86;
+  border-top: 2px solid #B6B5B3;
+
+  background-image: url('../images/greyBtn.png');
+  background-size: cover;
+
+  font-weight: 900;
+}
+
+.transport button:active {
+    filter: brightness(85%);
 }
 
 /* solo/mute */
@@ -150,12 +171,35 @@ body {
   height: 35px;
 }
 
+.solo, .mute {
+  border-bottom: 2px solid #171717;
+  border-right: 2px solid #413F3F;
+  border-left: 2px solid #8B8A86;
+  border-top: 2px solid #B6B5B3;
+
+  background-image: url('../images/greyBtn.png');
+  background-size: cover;
+
+}
+
+.solo:active, .mute:active {
+      filter: brightness(85%);
+}
+
 .muted {
-  background: red;
+  background-image: url('../images/red.png');
+  background-size: cover;
+  -webkit-box-shadow: 0px 0px 25px -2px rgba(254,44,2,1);
+  -moz-box-shadow: 0px 0px 25px -2px rgba(254,44,2,1);
+  box-shadow: 0px 0px 25px -2px rgba(254,44,2,1);
 }
 
 .soloed {
-  background: yellow;
+  background-image: url('../images/yellow.png');
+  background-size: cover;
+  -webkit-box-shadow: 0px 0px 25px -2px rgba(255,252,4,1);
+  -moz-box-shadow: 0px 0px 25px -2px rgba(255,252,4,1);
+  box-shadow: 0px 0px 25px -2px rgba(255,252,4,1);
 }
 
 
