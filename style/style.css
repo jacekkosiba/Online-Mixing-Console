@@ -83,7 +83,8 @@ body {
 .master {
   height: 70px;
   width: 35px;
-  background: red;
+  background-image: url('../images/fader2.png');
+  background-size: cover;
   position: relative;
   right: 16px;
   top: 35px;
@@ -92,7 +93,8 @@ body {
 .fader {
   height: 70px;
   width: 35px;
-  background: grey;
+  background-image: url('../images/faderV.png');
+  background-size: cover;
   position: relative;
   right: 16px;
   top: 35px;
@@ -106,6 +108,10 @@ body {
 
 .masterStrip .label {
   color: white;
+}
+
+.masterSpace {
+  height: 135px;
 }
 
 /* transport controls */
@@ -160,11 +166,11 @@ body {
 }
 
 .panKnob {
-  background: grey;
+  background-image: url('../images/knob2V.png');
+  background-size: cover;
   height: 70px;
   width: 70px;
   border-radius: 50%;
-  /*transform: rotate();*/
 }
 
 
@@ -175,6 +181,7 @@ body {
   background: black;
   position: relative;
   right: -35px;
+  display: none;
 }
 
 

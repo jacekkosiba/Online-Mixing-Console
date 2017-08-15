@@ -944,7 +944,6 @@ let masterOffsetTop = $masterFader.offset().top ;
               fxCount++;
               faderOffsetTop = faderOffsetTop + 35 ;
               masterOffsetTop = masterOffsetTop + 35 ;
-              console.log(faderOffsetTop);
               $(this).find('.effectBox').append(
                 '<button class="' + target.attr('data-passClass') + ' effectBtn" data-instance=' + fxCount + '>' + target.attr('data-name') + '</button>'
               );
@@ -956,22 +955,6 @@ let masterOffsetTop = $masterFader.offset().top ;
     });
   });
 
-
-
-
-  // drop fx here placeholder
-
-
-  // $(document).on('mouseup', '.strip', function() {
-  //
-  //     let $effectBox = $('.effectBox');
-  //
-  //     if( $effectBox.find('.effectBtn').length > 0 ) {
-  //       $(this).find('.effectBox p').remove();
-  //     } else {
-  //       null
-  //     };
-  // });
 
 
 
