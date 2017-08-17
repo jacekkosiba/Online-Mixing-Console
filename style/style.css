@@ -1,5 +1,7 @@
 /* general */
 
+
+
 * {
   margin: 0;
   padding: 0;
@@ -20,13 +22,15 @@ button:focus {outline:0;}
 /* background */
 
 body {
-  background: black;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background-color: black;
   background-image: url('.././images/steelee.png');
-  background-size: cover;
+  /*background-size:*/
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .container {
@@ -56,10 +60,6 @@ body {
   width: 80px;
 }
 
-.masterStrip {
-
-}
-
 
 .trackbox {
   height: 420px;
@@ -74,9 +74,6 @@ body {
   border: 1px solid black;
 }
 
-.masterStrip {
-  border: 1px solid darkred;
-}
 
 .track {
   height: 350px;
@@ -123,6 +120,11 @@ body {
   color: darkred;
 }
 
+.masterStrip {
+  background: rgba(255, 0, 0, 0.1);
+  /*border: 1px solid rgba(255, 0, 0, 0.15);*/
+}
+
 .masterSpace {
   height: 135px;
 }
@@ -130,21 +132,16 @@ body {
 /* transport controls */
 
 .transport {
-  /*background: lightgrey;*/
-  width: 720px;
-  height: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .transportBox {
-  border: 1px solid black;
-  height: 80px;
-  width: 380px;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 10px;
 }
 
 .transport button {
@@ -253,22 +250,30 @@ body {
 /* effect choose strip */
 
 .chooseFx {
-  /*background: #56306b;*/
-  width: 100px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding: 5px;
-  width: 100px;
+  padding: 17.5px;
+  width: 140px;
+
+  background: rgba(108, 44, 154, 0.1);
+  /*border: 1px solid rgba(108, 44, 154, 0.15);*/
+}
+
+.chooseEffectBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .chooseFx .label{
-  color: white;
+  color: lightgrey;
 }
 
 .chooseBtn {
-  width: 100%;
+  width: 100px;
   height: 35px;
 
   border-bottom: 2px solid #171717;
@@ -320,22 +325,35 @@ body {
 .effectBtn {
   width: 70px;
   height: 35px;
+
+  border-bottom: 2px solid #171717;
+  border-right: 2px solid #413F3F;
+  border-left: 2px solid #8B8A86;
+  border-top: 2px solid #B6B5B3;
+
+  background-image: url('../images/greyBtn.png');
+  background-size: cover;
 }
 
 .effectOn {
-  background: green;
+  background-image: url('../images/green.png');
+  background-size: cover;
+  -webkit-box-shadow: 0px 0px 25px -2px rgba(2,251,5,1);
+  -moz-box-shadow: 0px 0px 25px -2px rgba(2,251,5,1);
+  box-shadow: 0px 0px 25px -2px rgba(2,251,5,1);
+
+
 }
 
 
 
 /* Loading box */
 
+
 .loading {
   height: 250px;
   width: 500px;
-  background: #232526;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: black;
   position: absolute;
   left: center;
   top: center;
@@ -343,8 +361,22 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: lightgrey;
   font-size: 200%;
+}
+
+.loader {
+    border: 16px solid lightgrey; /* Light grey */
+    border-top: 16px solid grey; /* Blue */
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 

@@ -11,7 +11,6 @@ $(function(){ //DOMContentLoaded
   const tracksNames = ['DRUMS', 'BASS', 'GTR', 'VOC', 'DRUMS2', 'BASS2', 'GTR2', 'VOC2', 'VOC3' ];
   const tracksSoloed = [false, false, false, false, false, false, false, false, false ];
 
-  let faderOffsetTop = 0;
 
 
 
@@ -85,7 +84,6 @@ $(function(){ //DOMContentLoaded
 
     // fader movement
 
-faderOffsetTop = $($fader).offset().top ;
 
 
 
@@ -96,19 +94,23 @@ faderOffsetTop = $($fader).offset().top ;
       $(function () {
 
           const target = $('.fader').eq(i);
+          let faderOffsetTop = target.offset().top;
 
-          target.mousedown(function() {
+
+          target.mousedown(function(e) {
               dragging = true
+              faderOffsetTop = $(e.target).offset().top;
           });
 
           $(document).mouseup(function() {
               dragging = false
           });
 
-          $(document).mousemove(function(e) {
-              if (dragging) {
 
-                target.css('top', (e.pageY - faderOffsetTop));
+          $(document).mousemove(function(e) {
+
+              if (dragging) {
+                target.css('top', ( e.pageY - faderOffsetTop));
                   if( parseInt(target.css('top')) >= 315 ) {
                     target.css('top', '315px');
                   } else if( parseInt(target.css('top')) < -35 ) {
@@ -317,15 +319,19 @@ faderOffsetTop = $($fader).offset().top ;
 
         $container.removeClass('overlay');
         $load.removeClass('loading');
-        $load.text('')
+        $load.text('');
         clearInterval(loadingInterval);
 
       } else {
 
+        if( $load.hasClass('loading') ) {
+          null
+        } else {
+          $load.append("<div class='loader'></div>");
+        }
+
         $container.addClass('overlay');
         $load.addClass('loading');
-        $load.text('Loading...');
-
       };
   }, 500); // loading check frequency
 
@@ -358,7 +364,6 @@ faderOffsetTop = $($fader).offset().top ;
 
 
 
-let masterOffsetTop = $masterFader.offset().top ;
 
 
   function MasterFaderMove() {
@@ -366,8 +371,12 @@ let masterOffsetTop = $masterFader.offset().top ;
     let dragging = false
 
     $(function () {
-        $masterFader.mousedown(function() {
+
+      let masterOffsetTop = $masterFader.offset().top;
+
+        $masterFader.mousedown(function(e) {
             dragging = true
+            masterOffsetTop = $(e.target).offset().top;
         })
         $(document).mouseup(function() {
             dragging = false
@@ -375,7 +384,7 @@ let masterOffsetTop = $masterFader.offset().top ;
         $(document).mousemove(function(e) {
 
             if (dragging) {
-            $masterFader.css('top', (e.pageY - masterOffsetTop) );
+              $masterFader.css('top', (e.pageY - masterOffsetTop) );
               if( parseInt($masterFader.css('top')) >= 315 ) {
                 $masterFader.css('top', '315px');
               } else if( parseInt($masterFader.css('top')) < -35 ) {
@@ -945,8 +954,6 @@ let masterOffsetTop = $masterFader.offset().top ;
 
             if ( dragging === true ) {
               fxCount++;
-              faderOffsetTop = faderOffsetTop + 35 ;
-              masterOffsetTop = masterOffsetTop + 35 ;
               $(this).find('.effectBox').append(
                 '<button class="' + target.attr('data-passClass') + ' effectBtn" data-instance=' + fxCount + '>' + target.attr('data-name') + '</button>'
               );
