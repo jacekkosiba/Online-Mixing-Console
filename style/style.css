@@ -163,6 +163,8 @@ body {
     filter: brightness(85%);
 }
 
+
+
 /* solo/mute */
 
 .buttonBox {
@@ -335,6 +337,10 @@ body {
   background-size: cover;
 }
 
+.effectBtn:active {
+  filter: brightness(85%);
+}
+
 .effectOn {
   background-image: url('../images/green.png');
   background-size: cover;
@@ -355,8 +361,9 @@ body {
   width: 500px;
   background: black;
   position: absolute;
-  left: center;
-  top: center;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   z-index: 10;
   display: flex;
   align-items: center;
@@ -387,5 +394,5 @@ body {
     height:100%;
     top:0;
     left:0;
-    background:rgba(0,0,0,0.5);
+    background:rgba(0,0,0,0.7);
 }
