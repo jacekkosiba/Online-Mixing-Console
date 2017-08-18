@@ -468,10 +468,13 @@ $(function(){ //DOMContentLoaded
             if (dragging) {
 
                 var mouse_y = e.pageY;
-                var degree = mouse_y - 140
+                console.log(e.pageY);
+                var degree = mouse_y - 140;
                 if( degree > 140 ) {
                   degree = 140;
-                };
+                } else if( degree < -140 ) {
+                  degree = -140;
+                }
                 target.css('-moz-transform', 'rotate(' + (- degree) + 'deg)');
                 target.css('-moz-transform-origin', '50% 50%');
                 target.css('-webkit-transform', 'rotate(' + (- degree) + 'deg)');
