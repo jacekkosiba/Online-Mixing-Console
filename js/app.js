@@ -84,7 +84,7 @@ $(function(){ //DOMContentLoaded
 
     // fader movement
 
-
+          let faderOffsetTop = 0;
 
 
     $fader.forEach( (t,i) => {
@@ -94,15 +94,14 @@ $(function(){ //DOMContentLoaded
       $(function () {
 
           const target = $('.fader').eq(i);
-          let faderOffsetTop = target.offset().top;
+          faderOffsetTop = target.offset().top;
 
 
           target.mousedown(function(e) {
               dragging = true
-              faderOffsetTop = $(e.target).offset().top;
           });
 
-          $(document).mouseup(function() {
+          $(document).mouseup(function(e) {
               dragging = false
           });
 
@@ -361,7 +360,7 @@ $(function(){ //DOMContentLoaded
   // masterFader movement
 
 
-
+  let masterOffsetTop = 0;
 
 
 
@@ -371,11 +370,10 @@ $(function(){ //DOMContentLoaded
 
     $(function () {
 
-      let masterOffsetTop = $masterFader.offset().top;
+      masterOffsetTop = $masterFader.offset().top;
 
         $masterFader.mousedown(function(e) {
             dragging = true
-            masterOffsetTop = $(e.target).offset().top;
         })
         $(document).mouseup(function() {
             dragging = false
@@ -943,6 +941,8 @@ $(function(){ //DOMContentLoaded
         $(this).find('.effectBox').append(
             '<button class="' + $(ui.draggable[0]).attr('data-passClass') + ' effectBtn" data-instance=' + fxCount + '>' + $(ui.draggable[0]).attr('data-name') + '</button>'
         );
+        faderOffsetTop = faderOffsetTop + 35;
+        masterOffsetTop = masterOffsetTop + 35;
       }
     });
   });
@@ -956,13 +956,8 @@ $(function(){ //DOMContentLoaded
         opacity: '0.7',
         zIndex: '100',
         cursorAt: { top: 17.5, left: 70 },
-
       });
     });
-
-
-
-
 
 
 
