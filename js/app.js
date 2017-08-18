@@ -430,11 +430,10 @@ $(function(){ //DOMContentLoaded
 
 
   function setPan(index, thisKnob, deg) {
-    // tracksGroup.sounds[index].effects[0].options.pan = ( parseInt(thisKnob.css('transform')) ;
     if ( deg > 0 ) {
-      tracksGroup.sounds[index].effects[0].pan = (deg / 100) -0.4 ;
+      tracksGroup.sounds[index].effects[0].pan = Math.round(deg - 40) / 100;
     } else if ( deg < 0 ) {
-      tracksGroup.sounds[index].effects[0].pan = (deg / 100) +0.4 ;
+      tracksGroup.sounds[index].effects[0].pan = Math.round(deg + 40) / 100
     } else {
       tracksGroup.sounds[index].effects[0].pan = 0;
     };
@@ -468,13 +467,14 @@ $(function(){ //DOMContentLoaded
             if (dragging) {
 
                 var mouse_y = e.pageY;
-                console.log(e.pageY);
                 var degree = mouse_y - 140;
+
                 if( degree > 140 ) {
                   degree = 140;
                 } else if( degree < -140 ) {
                   degree = -140;
-                }
+                };
+
                 target.css('-moz-transform', 'rotate(' + (- degree) + 'deg)');
                 target.css('-moz-transform-origin', '50% 50%');
                 target.css('-webkit-transform', 'rotate(' + (- degree) + 'deg)');
@@ -931,41 +931,36 @@ $(function(){ //DOMContentLoaded
   // effects drag & drop
 
 
+
+
   const $chooseBtns = $('.chooseBtn');
+  const $strip = $('.strip');
 
-
-
-
-  $chooseBtns.each( (i,t) => {
-
-
-    let dragging = false
-
-
-    $(function () {
-
-        const target = $chooseBtns.eq(i);
-
-
-        target.mousedown(function() {
-            dragging = true
-        });
-
-
-        $('.strip').mouseup(function() {
-
-            if ( dragging === true ) {
-              fxCount++;
-              $(this).find('.effectBox').append(
-                '<button class="' + target.attr('data-passClass') + ' effectBtn" data-instance=' + fxCount + '>' + target.attr('data-name') + '</button>'
-              );
-            };
-
-            dragging = false
-
-        });
+  $strip.each( (i,t) => {
+    $(t).droppable({
+      drop: function( event, ui ) {
+        fxCount++;
+        $(this).find('.effectBox').append(
+            '<button class="' + $(ui.draggable[0]).attr('data-passClass') + ' effectBtn" data-instance=' + fxCount + '>' + $(ui.draggable[0]).attr('data-name') + '</button>'
+        );
+      }
     });
   });
+
+    $chooseBtns.each( (i,t) => {
+      $(t).draggable({
+        containment: 'document',
+        scroll: 'true',
+        helper: 'clone',
+        stack: '.chooseBtn',
+        opacity: '0.7',
+        zIndex: '100',
+        cursorAt: { top: 17.5, left: 70 },
+
+      });
+    });
+
+
 
 
 
