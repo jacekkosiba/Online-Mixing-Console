@@ -176,7 +176,7 @@ body {
   width: 35px;
   height: 35px;
   font-weight: 900;
-  
+
 }
 
 .solo, .mute {
@@ -232,7 +232,7 @@ body {
 
 
 .panKnob {
-  background-image: url('../images/knob2V.png');
+  background-image: url('../images/knob2v.png');
   background-size: cover;
   height: 50px;
   width: 50px;
