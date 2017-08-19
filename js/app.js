@@ -84,7 +84,7 @@ $(function(){ //DOMContentLoaded
 
     // fader movement
 
-          let faderOffsetTop = 0;
+    let faderOffsetTop = 0;
 
 
     $fader.forEach( (t,i) => {

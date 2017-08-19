@@ -175,6 +175,8 @@ body {
 .buttonBox button {
   width: 35px;
   height: 35px;
+  font-weight: 900;
+  
 }
 
 .solo, .mute {
@@ -277,6 +279,7 @@ body {
 .chooseBtn {
   width: 140px;
   height: 35px;
+  font-weight: 900;
   display: flex;
   align-items: center;
   justify-content: center;
