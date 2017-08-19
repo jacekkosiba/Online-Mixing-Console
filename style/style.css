@@ -112,6 +112,7 @@ body {
 /* labels */
 
 .label {
+  font-size: 70%;
   margin: 15px 0 15px 0;
   color: lightgrey;
 }
