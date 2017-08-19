@@ -7,7 +7,7 @@ $(function(){ //DOMContentLoaded
 
   let tracksGroup = new Pizzicato.Group();
   let counter = 0;
-  const tracksArr = ['./../audio/ovh.mp3', './../audio/drCloseMics.mp3', './../audio/drRoom.mp3', './../audio/bas.mp3', './../audio/gtrRif.mp3', './../audio/gtrS.mp3', './../audio/mainVx.mp3', './../audio/backVx.mp3', './../audio/fx.mp3'];
+  const tracksArr = ['https://github.com/jacekkosiba/OnlineMixingConsole/blob/master/audio/ovh.mp3?raw=true', 'https://github.com/jacekkosiba/OnlineMixingConsole/blob/master/audio/ovh.mp3?raw=true', 'https://github.com/jacekkosiba/OnlineMixingConsole/blob/master/audio/ovh.mp3?raw=true', 'https://github.com/jacekkosiba/OnlineMixingConsole/blob/master/audio/ovh.mp3?raw=true', 'https://github.com/jacekkosiba/OnlineMixingConsole/blob/master/audio/ovh.mp3?raw=true', 'https://github.com/jacekkosiba/OnlineMixingConsole/blob/master/audio/ovh.mp3?raw=true', 'https://github.com/jacekkosiba/OnlineMixingConsole/blob/master/audio/ovh.mp3?raw=true', 'https://github.com/jacekkosiba/OnlineMixingConsole/blob/master/audio/ovh.mp3?raw=true', 'https://github.com/jacekkosiba/OnlineMixingConsole/blob/master/audio/ovh.mp3?raw=true'];
   const tracksNames = ['DR OVH', 'DRUMS', 'DR ROOM', 'BASS', 'GTR', 'GTR 2', 'VOC', 'VOC 2', 'FX' ];
   const tracksSoloed = [false, false, false, false, false, false, false, false, false];
 
