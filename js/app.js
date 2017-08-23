@@ -7,7 +7,7 @@ $(function(){ //DOMContentLoaded
 
   let tracksGroup = new Pizzicato.Group();
   let counter = 0;
-  const tracksArr = ['audio/ovh.mp3', 'audio/drCloseMics.mp3', 'audio/drRoom.mp3', 'audio/bas.mp3', 'audio/gtrRif.mp3', 'audio/gtrS.mp3', 'audio/mainVx.mp3', 'audio/backVx.mp3', 'audio/fx.mp3'];
+  const tracksArr = ['OnlineMixingConsole/audio/ovh.mp3', 'OnlineMixingConsole/audio/drCloseMics.mp3', 'OnlineMixingConsole/audio/drRoom.mp3', 'OnlineMixingConsole/audio/bas.mp3', 'OnlineMixingConsole/audio/gtrRif.mp3', 'OnlineMixingConsole/audio/gtrS.mp3', 'OnlineMixingConsole/audio/mainVx.mp3', 'OnlineMixingConsole/audio/backVx.mp3', 'OnlineMixingConsole/audio/fx.mp3'];
   const tracksNames = ['DR OVH', 'DRUMS', 'DR ROOM', 'BASS', 'GTR', 'GTR 2', 'VOC', 'VOC 2', 'FX' ];
   const tracksSoloed = [false, false, false, false, false, false, false, false, false];
 
