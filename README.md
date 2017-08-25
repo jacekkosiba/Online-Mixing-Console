@@ -55,7 +55,7 @@ ___
 Created by Jacek Kosiba
 
 www.jacekkosiba.pl
-facebook.com/jacekkosibanagrania
+www.facebook.com/jacekkosibanagrania
 
 
 
