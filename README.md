@@ -1,5 +1,5 @@
 # Online Mixing Console
-#### https://jacekkosiba.github.io/Online-Mixing-Console/
+#### [DEMO](https://jacekkosiba.github.io/Online-Mixing-Console/)
 
 Online Mixing Console allows you step in the shoes of an audio engineer and create your own mix of a song, just like in a recording studio. 
 
